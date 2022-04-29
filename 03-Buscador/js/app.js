@@ -44,7 +44,9 @@ marca.addEventListener('change', (e) => {
 });
 
 year.addEventListener('change', (e) => {
-    datosBusqueda.year = e.target.value;
+    datosBusqueda.year = parseInt(e.target.value);  // Convertimos a String
+
+    filtrarAuto();
 });
 
 minimo.addEventListener('change', (e) => {
@@ -78,8 +80,6 @@ function mostrarAutos() {
         autoHTML.textContent = `
         ${marca} ${modelo} - ${year} - ${puertas} Puertas - Transmisión: ${transmision} 
         - Precio: $${precio} - Color: ${color}
-        
-
         `;
 
         // Insertar en el HTML 
@@ -99,10 +99,10 @@ function llenarSelect() {
     }
 }
 
-// Funcion que flitra en base a la busqueda
+// Funcion que flitra en base a la busqueda 
 
 function filtrarAuto() {
-    const resultado = autos.filter(filtrarMarca);
+    const resultado = autos.filter(filtrarMarca).filter(filtrarYear)
 
     console.log(resultado);
 }
@@ -115,3 +115,15 @@ function filtrarMarca(auto) {
 
     return auto;
 }
+
+function filtrarYear(auto) {
+    const { year } = datosBusqueda;
+    console.log(typeof year)
+    if (year) {
+        return auto.year === year;
+    }
+
+    return auto;
+}
+
+
