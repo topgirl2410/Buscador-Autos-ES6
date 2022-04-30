@@ -139,6 +139,8 @@ function filtrarAuto() {
 // Mostrar un mensaje si no sale ningun resultado en la busqueda
 
 function noResultado() {
+    
+    limpiarHTML();
 
     const noResultado = document.createElement('div');
     noResultado.classList.add('alerta', 'error');
